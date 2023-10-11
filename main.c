@@ -151,12 +151,12 @@ int main() {
                         printf("\n\n|Hora    | Nome     | Celular      | Código     |\n");
                         scanf("%i", &hora);
 
-                    for(j = 7; j < 20; j++){
+                    for(j = 7; j < 21; j++){
                        if(j == hora) {printf("Existe cliente cadastrado, horário indisponível\n");
                        break;}
                     }
                     
-                    if (hora < 7 || hora > 19){ printf("*Horário de atendimento indisponível*\n"); }
+                    if (hora < 7 || hora > 20){ printf("*Horário de atendimento indisponível*\n"); }
                     
                     else {
                           horarioValido = 1;  // O horário é válido, podemos sair do loop
