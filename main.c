@@ -135,7 +135,7 @@ int main() {
                 printf("|_______________________________________________|\n");
 
                  // 22 12 leo 1998276xxxx 101
-                 //Adição de horário de funcionamento Baseado em *int K;
+                 //
                  //adição de loop para retornar ao cadastro
                
                   
