@@ -15,6 +15,7 @@ char fechar;
 // Incluir: Adição de visualização sobre códigos e planos
 // Incluir: Horário de funcionamento 7 às 20
 // Incluir:adição de loop para retornar ao cadastro
+// Horários em ordem crescente
 
 struct FichaConvenio {
 	int codigo;
@@ -74,12 +75,23 @@ for (i=0; i<20; i++){
 void visualizar () {
     //modificação table para beleza estrutural
 
-	printf("\n\n|Hora     | Nome     | Celular       | Código     | Convênio     | Valor     |\n");
+	   for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 12-i; j++) {
+             if (ficha[j].hora > ficha[j+1].hora) {
+                // Troca as entradas
 
-  for (k = 0; k < 12; k++){
-            // Exibição das informações da consulta
-    				mostrar(&ficha[k]);
-				}
+		struct FichaMedica temp = ficha[j];
+                ficha[j] = ficha[j+1];
+                ficha[j+1] = temp;
+            }
+        }
+    }
+
+	printf("\n\n|Hora     | Nome     | Celular       | Código     | Convênio     | Valor     |\n");
+	
+	for (k = 0; k < 12; k++){
+        mostrar(&ficha[k]);
+    }
 }
 
 int main() {
@@ -140,8 +152,8 @@ int main() {
                         scanf("%i", &hora);
 
                     for(j = 7; j < 20; j++){
-                    if(j == hora){printf("Existe cliente cadastrado, horário indisponível\n");
-                    break;}
+                       if(j == hora) {printf("Existe cliente cadastrado, horário indisponível\n");
+                       break;}
                     }
                     
                     if (hora < 7 || hora > 19){ printf("*Horário de atendimento indisponível*\n"); }
