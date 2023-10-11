@@ -188,8 +188,33 @@ int main() {
                 break;
             case 4:
                 printf("Você escolheu Alterar.\n");
-                // Coloque o código para alterar aqui.
-                break;
+                
+                int escolha;
+
+                printf("\nSelecione o convênio que deseja alterar o valor:\n");
+    
+                for(int i = 0; i < 4; i++){
+                   printf("%d. %s\n", i+1, convenio[i].nome);
+                }
+
+                printf("Escolha: ");
+                scanf("%d", &escolha);
+                
+                if(escolha >= 1 && escolha <= 4) {               
+                
+                int novoValor;
+
+                printf("Novo valor: ");
+                scanf("%d", &novoValor);
+                
+                //[escolha - 1]  por causa da indexação causada de 1 a 4 e não de 0 a 3!
+                convenio[escolha - 1].valor = novoValor;
+
+                printf("Valores do convênio %s alterados com sucesso!\n", convenio[escolha - 1].nome);}
+                 
+                else { printf("Opção inválida.\n");
+                     } break;
+
             case 5:
                 printf("Saindo do programa.\n");
                 break;
