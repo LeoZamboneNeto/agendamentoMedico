@@ -122,56 +122,50 @@ int main() {
 				      scanf("%c%c", &fechar, &fechar);
               break;
 
+		
             case 2:
                 printf("Você escolheu Incluir.\n\n");
-
-                //Adição: Visualização dos códigos do plano
                 printf("_________________________________________________\n");
                 printf("|Planos  | Código   |  Plano       | Valor (R$) |\n");
                 printf("|_______________________________________________|\n");
 
                 for(int i = 0; i < 4; i++){
-                printf("|  %2i    |%5d     |  %-12s| %5d      |\n", i+1, convenio[i].codigo, convenio[i].nome, convenio[i].valor);}
+                printf("|  %2i    |%5d     |  %-12s| %5d      |\n", i+1, convenio[i].codigo, convenio[i].nome, convenio[i].valor); }
                 printf("|_______________________________________________|\n");
 
-                 // 22 12 leo 1998276xxxx 101
-                 //
-                 //adição de loop para retornar ao cadastro
-               
-                  
-                //------------------------------------------------------------------
+                int horarioValido = 0;
+                int horarioDisponivel;
 
-                 //Perguntar sobre %4d que seja fixa para esquerda e para direita
-                 // perguntar do for(j= 0....)
-                
-                 int horarioValido = 0;
-                 int j;
-                 
-                 while (!horarioValido) {
+                while (!horarioValido) {
                         printf("\n\n|Hora    | Nome     | Celular      | Código     |\n");
                         scanf("%i", &hora);
 
-                    for(j = 7; j < 21; j++){
-                       if(j == hora) {printf("Existe cliente cadastrado, horário indisponível\n");
-                       break;}
-                    }
-                    
-                    if (hora < 7 || hora > 20){ printf("*Horário de atendimento indisponível*\n"); }
-                    
-                    else {
-                          horarioValido = 1;  // O horário é válido, podemos sair do loop
-                          hora = hora - 7;
-                          ficha[hora].hora = hora + 7;
-                          scanf("%s", ficha[hora].nome);
-                          scanf("%s", ficha[hora].celular);
-                          scanf("%i", &ficha[hora].codigo);
-                          autopreencher(hora);
-                         } 
-                         while (getchar() != '\n');} //o loop infinito getchar leitura char
-                         break;                      //até a novo char da prox linha, por isso != \n
+                 if (hora < 7 || hora > 19){ printf("*Horário de atendimento indisponível*\n"); }
+                 else {
+                        int horarioDisponivel = 1;                         
+			 for(int i = 0; i < 13; i++){
+                           if(ficha[i].hora == hora){
+                               horarioDisponivel = 0;
+                               break;}
+                      }
 
+                 if (horarioDisponivel){
+                        horarioValido = 1;  // O horário é válido, podemos sair do loop
+                        hora = hora - 7;
+                        ficha[hora].hora = hora + 7;
+                        scanf("%s", ficha[hora].nome);
+                        scanf("%s", ficha[hora].celular);
+                        scanf("%i", &ficha[hora].codigo);
+                        autopreencher(hora);
+                 }
 
-                 
+                 else {printf("Horário já cadastrado.\n"); }
+		    
+		     }// chave no final de tudo pois o primeiro else envolve todo trecho
+
+                 while (getchar() != '\n');}
+                 break;
+               
 
             case 3:
                 printf("Você escolheu Apagar.\n");
